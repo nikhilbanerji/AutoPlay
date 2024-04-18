@@ -1,0 +1,55 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.centered-content {
+    width: 100%;
+    max-width: 800px; /* Adjust this value to set the max width of the content */
+}
+.app-name {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+#search-box {
+    font-size: 16px;
+    padding: 10px 20px;
+    width: 100%;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    margin-bottom: 20px;
+}
+.checkbox-container {
+    margin: 10px 0;
+    display: inline-block;
+}
+#search-btn {
+    padding: 10px 25px;
+    font-size: 14px;
+    color: #5F6368;
+    background-color: #f8f8f8;
+    border: 1px solid #f8f8f8;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block; /* This makes the button block level so it can be centered */
+    margin: 20px auto 0; /* Centers the button */
+}
+#search-btn:hover {
+    border-color: #c6c6c6;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+label {
+    margin-left: 5px;
+    font-size: 14px;
+    color: #5F6368;
+}
+/* Custom styles for checkboxes */
+.checkbox-container input {
+    margin-right: 5px;
+}
