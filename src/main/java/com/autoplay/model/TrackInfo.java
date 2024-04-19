@@ -1,9 +1,12 @@
 package com.autoplay.model;
 
+import org.apache.solr.common.SolrDocument;
+
 public class TrackInfo {
     private String name;
     private String artist;
     private long durationMs;
+    private String formattedDuration;
     private int popularity;
     private boolean explicit;
     private double danceability;
@@ -24,8 +27,30 @@ public class TrackInfo {
     private String analysisUrl;
     private int timeSignature;
 
-    // Constructor
-    public TrackInfo() {
+    public TrackInfo(SolrDocument doc) {
+        this.name = (String) doc.getFieldValue("name");
+        this.artist = (String) doc.getFieldValue("artist");
+        this.durationMs = (Long) doc.getFieldValue("duration_ms");
+        this.formattedDuration = formatDuration();
+        this.popularity = (Integer) doc.getFieldValue("popularity");
+        this.explicit = (Boolean) doc.getFieldValue("explicit");
+        this.danceability = convertToDouble(doc.getFieldValue("danceability"));
+        this.energy = convertToDouble(doc.getFieldValue("energy"));
+        this.key = (Integer) doc.getFieldValue("key");
+        this.loudness = convertToDouble(doc.getFieldValue("loudness"));
+        this.mode = (Integer) doc.getFieldValue("mode");
+        this.speechiness = convertToDouble(doc.getFieldValue("speechiness"));
+        this.acousticness = convertToDouble(doc.getFieldValue("acousticness"));
+        this.instrumentalness = convertToDouble(doc.getFieldValue("instrumentalness"));
+        this.liveness = convertToDouble(doc.getFieldValue("liveness"));
+        this.valence = convertToDouble(doc.getFieldValue("valence"));
+        this.tempo = convertToDouble(doc.getFieldValue("tempo"));
+        this.type = (String) doc.getFieldValue("type");
+        this.spotifyId = (String) doc.getFieldValue("id");
+        this.uri = (String) doc.getFieldValue("uri");
+        this.trackHref = (String) doc.getFieldValue("track_href");
+        this.analysisUrl = (String) doc.getFieldValue("analysis_url");
+        this.timeSignature = (Integer) doc.getFieldValue("time_signature");
     }
 
     public String getName() {
@@ -38,6 +63,10 @@ public class TrackInfo {
 
     public long getDurationMs() {
         return durationMs;
+    }
+
+    public String getFormattedDuration() {
+        return formattedDuration;
     }
 
     public int getPopularity() {
@@ -143,6 +172,20 @@ public class TrackInfo {
                 ", analysisUrl='" + analysisUrl + '\'' +
                 ", timeSignature=" + timeSignature +
                 '}';
+    }
+
+    private static double convertToDouble(Object value) {
+        if (value != null) {
+            return ((Number) value).doubleValue();
+        }
+        return 0.0; // Default value if null
+    }
+
+    // Convert duration from milliseconds to "mm:ss" format
+    public String formatDuration() {
+        int seconds = (int) (durationMs / 1000) % 60 ;
+        int minutes = (int) ((durationMs / (1000*60)) % 60);
+        return String.format("%d:%02d", minutes, seconds);
     }
 }
 

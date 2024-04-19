@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AutoPlay Search</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="js/view.js"></script> <!-- Your JavaScript File -->
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">AutoPlay</a>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" id="search-box" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" id="search-btn">Search</button>
+  </form>
+</nav>
+
+<div class="container">
+  <table id="results-table" class="table table-striped mt-4">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Artist</th>
+      <th>Duration (mm:ss)</th>
+      <th>Popularity</th>
+      <th>Explicit</th>
+      <th>Danceability</th>
+      <th>Energy</th>
+      <th>Key</th>
+      <th>Loudness</th>
+      <th>Mode</th>
+      <th>Speechiness</th>
+      <th>Acousticness</th>
+      <th>Instrumentalness</th>
+      <th>Liveness</th>
+      <th>Valence</th>
+      <th>Tempo</th>
+      <th>Type</th>
+      <th>Spotify ID</th>
+      <th>URI</th>
+      <th>Time Signature</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Results will be inserted here -->
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

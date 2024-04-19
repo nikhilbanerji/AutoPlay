@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import static spark.Spark.*;
 import com.autoplay.model.*;
 
+import java.util.List;
+
 public class AutoPlayController {
     public static void main(String[] args) {
         staticFiles.location("/public");
@@ -28,12 +30,17 @@ public class AutoPlayController {
             System.out.println("Explicit: " + explicit);
             System.out.println("Popular: " + popular);
 
-            // Call Solr search service here
-            // SolrSearch.search();
+            // Query Solr using search service
+            List<TrackInfo> playlist = SolrSearch.search("explicit:false");
+
+            // Print playlist for debugging
+            for (TrackInfo track : playlist) {
+                System.out.println(track);
+            }
 
             // Respond with some JSON
             response.type("application/json");
-            return gson.toJson("Success");
+            return gson.toJson(playlist);
         });
     }
 
