@@ -10,7 +10,7 @@ public class SolrSearch {
             SolrQuery solrQuery = new SolrQuery(query);
 //            solrQuery.setQuery("*:*");
             solrQuery.setStart(0);
-            solrQuery.setRows(10);
+            solrQuery.setRows(20);
 
             QueryResponse response = solrClient.query(solrQuery);
             response.getResults().forEach(document -> System.out.println(document));
