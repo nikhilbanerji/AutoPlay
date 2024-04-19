@@ -1,5 +1,6 @@
 package com.autoplay.controller;
 
+import com.autoplay.service.SolrSearch;
 import com.google.gson.Gson;
 
 import static spark.Spark.*;
@@ -13,13 +14,11 @@ public class AutoPlayController {
 
         redirect.post("/autoplay", "/");
 
-        post("/playlist", (request, response) -> {
+        post("/search", (request, response) -> {
             // Extract the JSON string from the request body
             String body = request.body();
             // Deserialize the JSON to a Java object
             Query query = gson.fromJson(body, Query.class);
-
-            // Now, you can access the description and other properties
             String description = query.getDescription();
             boolean explicit = query.isExplicit();
             boolean popular = query.isPopular();
@@ -28,6 +27,9 @@ public class AutoPlayController {
             System.out.println("Description: " + description);
             System.out.println("Explicit: " + explicit);
             System.out.println("Popular: " + popular);
+
+            // Call Solr search service here
+            // SolrSearch.search();
 
             // Respond with some JSON
             response.type("application/json");

@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 function loadPlaylist(user_preferences) {
     $.ajax({
-        url: "/playlist",
+        url: "/search",
         type: "POST",
         contentType: "application/json",  // Setting the content type as JSON
         data: JSON.stringify(user_preferences),  // Stringify data
