@@ -179,7 +179,7 @@ def createQuery(featuresDict):
     return queryStr[:-5]
 
 
-def CreateStrToTokenize(inputs):
+def createFinalQuery(inputs, explicitAllowed):
     st = ""
     st = st + " " + promptT5(inputs, "happyOrSad")
     st = st + " " + promptT5(inputs, "quickOrSlow")
@@ -189,11 +189,12 @@ def CreateStrToTokenize(inputs):
     input_text = inputs + " " + st
     tokens = process_text(input_text)
     features = extract_features(tokens)
-    return createQuery(features)
+    q = createQuery(features)
+    if not explicitAllowed:
+      return q + " AND explicit: false" 
+    return q
 
 base_inputs = '''Input: I own a fast food hamburger restaurant called Dave's Burgers.
 We are a family owned business that takes great pride in our service. We have free peanuts on each table for our guests. I want our customers to feel welcome and like they're part of the family.'''
 
-# This is how to create the query text
-# Substitute the "base_inputs" variable for the user's text
-CreateStrToTokenize(base_inputs)
+createFinalQuery(base_inputs, False)
